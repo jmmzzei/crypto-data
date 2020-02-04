@@ -1,0 +1,23 @@
+{
+  "name": "crypto-tracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./bin/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cfonts": "^2.5.2",
+    "chalk": "^3.0.0",
+    "commander": "^4.1.1",
+    "dotenv": "^8.2.0",
+    "inquirer": "^7.0.4",
+    "node-fetch": "^2.6.0"
+  },
+  "bin": {
+    "hello": "./bin/index"
+  }
+}
