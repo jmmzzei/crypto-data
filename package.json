@@ -1,14 +1,15 @@
 {
   "name": "crypto-tracker",
   "version": "1.0.0",
-  "description": "",
+  "description": "A crypto data fetcher in the command-line",
   "main": "./bin/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": ["cypto", "coin value", "CLI"],
   "author": "",
   "license": "ISC",
+  "preferGlobal": true,
   "dependencies": {
     "cfonts": "^2.5.2",
     "chalk": "^3.0.0",
@@ -18,6 +19,6 @@
     "node-fetch": "^2.6.0"
   },
   "bin": {
-    "hello": "./bin/index"
+    "get-crypto": "./bin/index.js"
   }
 }
