@@ -20,11 +20,28 @@ cfont.say('CRYPTO DATA', {
     align: 'center'
 })
 
+
 if (program.coin) {
     fetchCoins(program.coin)
 } else {
-    askAndFetch()
+    popularOrCurstomSearch()
 }
+
+function popularOrCurstomSearch(){
+    inquirer.prompt({
+        type: 'list',
+        name: 'startOption',
+        message: 'Search for:',
+        choices: ['- Custom Search', 'Bitcoin', 'Ethereum', 'Litecoin', 'Ripple', 'EOS', 'Cardano', 'Binance Coin'] 
+    }).then(answers => {
+        if (answers.startOption === '- Custom Search') {
+            askAndFetch()
+        } else {
+            fetchCoins(answers.startOption)
+        }
+    })
+}
+
 
 function askAndFetch() {
     inquirer.prompt({
