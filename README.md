@@ -13,7 +13,7 @@ Options:
 
 	--coin <coin> 			-c 			Fetch data for a specific coin.	
 	--add-fav <coin> 		-f 			Add a coin to favorites.
-	--rm-fav <coin> 		-rf         Remove a coin from favorites.
+	--rm-fav <coin> 		-rf			Remove a coin from favorites.
 
 Type
 
