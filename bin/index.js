@@ -5,12 +5,13 @@ const inquirer = require('inquirer');
 const program = require('commander')
 const dotenv = require('dotenv')
 const cfont = require('cfonts') 
+const fs = require('fs')
 dotenv.config()
 
 program
     .arguments('get <crypto>', 'get crypto value')
-    .option('-o, --option', 'Add option')
-    .option('-c, --coin <type>', 'Add a coin')
+    .option('-c, --coin <coin>', 'Add a coin')
+    .option('-f, --fav <coin>', 'Add a coin to favorites')
     .version('0.0.1')
 
 program.parse(process.argv)
@@ -20,19 +21,37 @@ cfont.say('CRYPTO DATA', {
     align: 'center'
 })
 
-
 if (program.coin) {
     fetchCoins(program.coin)
+} else if(program.fav){
+    addToFav(program.fav)
 } else {
     popularOrCurstomSearch()
 }
 
+function addToFav(coin){
+    let formattedCoin = coin.split('-').join(' ')
+    let toWrite = formattedCoin + '\n' 
+    fs.appendFileSync('fav.txt', toWrite, (err) => {
+        if(err) throw err
+    })
+    console.log(`${chalk.magentaBright.inverse(formattedCoin + ' added to favs')}`)
+}
+
 function popularOrCurstomSearch(){
+    let fav = fs.readFileSync('fav.txt', 'utf8',(err, data) => {
+        if (err) return undefined
+        return data
+    });
+
+    let choices = fav !== '' ? fav.split('\n') : []
+    choices.unshift('- Custom Search')
+
     inquirer.prompt({
         type: 'list',
         name: 'startOption',
         message: 'Search for:',
-        choices: ['- Custom Search', 'Bitcoin', 'Ethereum', 'Litecoin', 'Ripple', 'EOS', 'Cardano', 'Binance Coin'] 
+        choices: choices
     }).then(answers => {
         if (answers.startOption === '- Custom Search') {
             askAndFetch()
@@ -41,7 +60,6 @@ function popularOrCurstomSearch(){
         }
     })
 }
-
 
 function askAndFetch() {
     inquirer.prompt({
@@ -60,7 +78,7 @@ function askAndFetch() {
 }
 
 function fetchCoins(coin) {
-    console.log(`Fetching for: ${coin}...`)
+    console.log(`Fetching data for: ${coin}...`)
 
     fetch('https://rest.coinapi.io/v1/assets/', {
         "X-CoinAPI-Key": process.env.COIN_API
