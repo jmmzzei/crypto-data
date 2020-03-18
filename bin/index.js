@@ -44,7 +44,8 @@ function popularOrCurstomSearch(){
         return data
     });
 
-    let choices = fav !== '' ? fav.split('\n') : []
+    let choices = fav.split('\n')
+    choices.pop()
     choices.unshift('- Custom Search')
 
     inquirer.prompt({
