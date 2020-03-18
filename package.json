@@ -1,5 +1,5 @@
 {
-  "name": "crypto-tracker",
+  "name": "crypto-data",
   "version": "1.0.0",
   "description": "A crypto data fetcher in the command-line",
   "main": "./bin/index.js",
