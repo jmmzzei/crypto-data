@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["cypto", "coin value", "CLI"],
+  "keywords": ["cypto", "coins", "CLI"],
   "author": "",
   "license": "ISC",
   "preferGlobal": true,
@@ -19,6 +19,6 @@
     "node-fetch": "^2.6.0"
   },
   "bin": {
-    "get-crypto": "./bin/index.js"
+    "crypto-data": "./bin/index.js"
   }
 }
