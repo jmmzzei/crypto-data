@@ -7,8 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": ["cypto", "coins", "CLI"],
-  "author": "",
+  "author": "@jmmzz",
   "license": "ISC",
+  "homepage": "https://github.com/jmmzzei/crypto-data",
   "preferGlobal": true,
   "dependencies": {
     "cfonts": "^2.5.2",
