@@ -4,7 +4,7 @@ Command line app for getting cryptocurrencies related data retreived from CoinAP
 
 ## Installation
 
-	npm i -g crypto-data
+	npm i -g @jmmzz/cryptodata
 
 
 ## Usage

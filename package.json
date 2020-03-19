@@ -1,5 +1,5 @@
 {
-  "name": "crypto-data",
+  "name": "@jmmzz/cryptodata",
   "version": "1.0.0",
   "description": "A crypto data fetcher in the command-line",
   "main": "./bin/index.js",
