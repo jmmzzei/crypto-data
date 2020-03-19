@@ -1,12 +1,16 @@
 {
   "name": "@jmmzz/cryptodata",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A crypto data fetcher in the command-line",
   "main": "./bin/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["cypto", "coins", "CLI"],
+  "keywords": [
+    "cypto",
+    "coins",
+    "CLI"
+  ],
   "author": "@jmmzz",
   "license": "ISC",
   "homepage": "https://github.com/jmmzzei/crypto-data",
