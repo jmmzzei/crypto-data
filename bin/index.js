@@ -6,14 +6,15 @@ const program = require("commander")
 const dotenv = require("dotenv")
 const cfont = require("cfonts")
 const fs = require("fs")
+const path = require('path')
 dotenv.config()
 
 program
 	.arguments("get <crypto>", "get crypto value")
-	.option("-c, --coin <coin>", "Add a coin")
+	.option("-c, --coin <coin>", "Fetch data for a specific coin")
 	.option("-f, --add-fav <coin>", "Add a coin to favorites")
 	.option("-rf, --rm-fav <coin>", "Remove a coin from favorites")
-	.version("0.0.1")
+	.version("1.0.0")
 
 program.parse(process.argv)
 
@@ -35,7 +36,7 @@ if (program.coin) {
 function addToFav(coin) {
 	let formattedCoin = coin.split("-").join(" ")
 	let toWrite = formattedCoin + "\n"
-	fs.readFile("fav.txt", "utf8", (err, data) => {
+	fs.readFile(path.resolve('fav.txt'), "utf8", (err, data) => {
 		if (err) throw err
 		let formattedArr = data.split("\n")
 		if (!formattedArr.includes(formattedCoin)) {
@@ -52,7 +53,7 @@ function addToFav(coin) {
 function removeFromFav(coin) {
 	let formattedCoin = coin.split("-").join(" ")
 
-	fs.readFile("fav.txt", "utf8", (err, data) => {
+	fs.readFile(path.resolve('fav.txt'), "utf8", (err, data) => {
 		if (err) throw err
 
 		let formatted = data
@@ -64,16 +65,18 @@ function removeFromFav(coin) {
 			.filter(el => el)
             .join("\n")
             
-		console.log(formattedCoin + " deleted")
-        
-        fs.writeFile("fav.txt", formatted + "\n", err => {
+        console.log(
+            `${chalk.magentaBright.inverse(formattedCoin + " deleted")}`
+        )
+
+        fs.writeFile(path.resolve('fav.txt'), formatted + "\n", err => {
 			if (err) throw err
 		})
 	})
 }
 
 function popularOrCurstomSearch() {
-	let fav = fs.readFileSync("fav.txt", "utf8", (err, data) => {
+	let fav = fs.readFileSync(path.resolve('fav.txt'), "utf8", (err, data) => {
 		if (err) return undefined
 		return data
 	})
@@ -134,7 +137,7 @@ function fetchCoins(coin) {
 				console.log(`No data about ${coin}`)
 			} else {
 				console.log(
-					`${chalk.magentaBright.inverse("Results:")}    
+                `${chalk.magentaBright.inverse("Results:")}    
                 
                 ${chalk.blue.inverse(
 					`Coin: ${filtered[0].name} (${filtered[0].asset_id})`
@@ -148,9 +151,6 @@ function fetchCoins(coin) {
 				)}
                 ${chalk.white.inverse(
 					`Volume (1mth): $${filtered[0].volume_1mth_usd}`
-				)}
-                ${chalk.white.inverse(
-					`Volume (1hr): $${filtered[0].volume_1hrs_usd}`
 				)}
                 `
 				)
