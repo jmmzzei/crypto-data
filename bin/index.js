@@ -13,35 +13,27 @@ program
 	.arguments("get <crypto>", "get crypto value")
 	.option("-c, --coin <coin>", "Fetch data for a specific coin")
 	.option("-f, --add-fav <coin>", "Add a coin to favorites")
-	.option("-rf, --rm-fav <coin>", "Remove a coin from favorites")
+	.option("-r, --rm-fav <coin>", "Remove a coin from favorites")
 	.version("1.0.0")
 
 program.parse(process.argv)
 
-cfont.say("CRYPTO DATA", {
-	font: "block",
-	align: "center"
-})
-
-const route = path.resolve(
-	process.execPath,
-	"../../lib/node_modules/@jmmzz/cryptodata/fav.txt"
-)
-
-console.log("route: " + route)
-
-console.log("resolve: " + path.resolve(__dirname, "../fav.txt"))
-
-console.log("process: " + process.cwd())
-
 if (program.coin) {
+	cfont.say("CRYPTO DATA", {
+		font: "block",
+		align: "center"
+	})
 	fetchCoins(program.coin)
 } else if (program.addFav) {
-	// addToFav(program.addFav)
+	addToFav(program.addFav)
 } else if (program.rmFav) {
-	// removeFromFav(program.rmFav)
+	removeFromFav(program.rmFav)
 } else {
-	popularOrCurstomSearch()
+	cfont.say("CRYPTO DATA", {
+		font: "block",
+		align: "center"
+	})
+	selectFavsOrCurstomSearch()
 }
 
 function addToFav(coin) {
@@ -61,7 +53,7 @@ function addToFav(coin) {
 		}
 	})
 	console.log(
-		`${chalk.magentaBright.inverse(formattedCoin + " added to favs")}`
+		`${chalk.magentaBright.inverse(formattedCoin + " added to crypto-data favs")}`
 	)
 }
 
@@ -81,7 +73,7 @@ function removeFromFav(coin) {
 			.join("\n")
 
 		console.log(
-			`${chalk.magentaBright.inverse(formattedCoin + " deleted")}`
+			`${chalk.magentaBright.inverse(formattedCoin + " deleted from crypto-data favs")}`
 		)
 
 		fs.writeFile(
@@ -94,7 +86,7 @@ function removeFromFav(coin) {
 	})
 }
 
-function popularOrCurstomSearch() {
+function selectFavsOrCurstomSearch() {
 	let fav = fs.readFileSync(
 		path.resolve(__dirname, "../fav.txt"),
 		"utf8",
