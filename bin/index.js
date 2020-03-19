@@ -6,7 +6,7 @@ const program = require("commander")
 const dotenv = require("dotenv")
 const cfont = require("cfonts")
 const fs = require("fs")
-const path = require('path')
+const path = require("path")
 dotenv.config()
 
 program
@@ -23,12 +23,23 @@ cfont.say("CRYPTO DATA", {
 	align: "center"
 })
 
+const route = path.resolve(
+	process.execPath,
+	"../../lib/node_modules/@jmmzz/cryptodata/fav.txt"
+)
+
+console.log("route: " + route)
+
+console.log("resolve: " + path.resolve(__dirname, "../fav.txt"))
+
+console.log("process: " + process.cwd())
+
 if (program.coin) {
 	fetchCoins(program.coin)
 } else if (program.addFav) {
-	addToFav(program.addFav)
+	// addToFav(program.addFav)
 } else if (program.rmFav) {
-	removeFromFav(program.rmFav)
+	// removeFromFav(program.rmFav)
 } else {
 	popularOrCurstomSearch()
 }
@@ -36,13 +47,17 @@ if (program.coin) {
 function addToFav(coin) {
 	let formattedCoin = coin.split("-").join(" ")
 	let toWrite = formattedCoin + "\n"
-	fs.readFile(path.resolve('fav.txt'), "utf8", (err, data) => {
+	fs.readFile(path.resolve(__dirname, "../fav.txt"), "utf8", (err, data) => {
 		if (err) throw err
 		let formattedArr = data.split("\n")
 		if (!formattedArr.includes(formattedCoin)) {
-			fs.appendFileSync("fav.txt", toWrite, err => {
-				if (err) throw err
-			})
+			fs.appendFileSync(
+				path.resolve(__dirname, "../fav.txt"),
+				toWrite,
+				err => {
+					if (err) throw err
+				}
+			)
 		}
 	})
 	console.log(
@@ -53,7 +68,7 @@ function addToFav(coin) {
 function removeFromFav(coin) {
 	let formattedCoin = coin.split("-").join(" ")
 
-	fs.readFile(path.resolve('fav.txt'), "utf8", (err, data) => {
+	fs.readFile(path.resolve(__dirname, "../fav.txt"), "utf8", (err, data) => {
 		if (err) throw err
 
 		let formatted = data
@@ -63,23 +78,32 @@ function removeFromFav(coin) {
 			.split(" ")
 			.filter(el => el !== "\n")
 			.filter(el => el)
-            .join("\n")
-            
-        console.log(
-            `${chalk.magentaBright.inverse(formattedCoin + " deleted")}`
-        )
+			.join("\n")
 
-        fs.writeFile(path.resolve('fav.txt'), formatted + "\n", err => {
-			if (err) throw err
-		})
+		console.log(
+			`${chalk.magentaBright.inverse(formattedCoin + " deleted")}`
+		)
+
+		fs.writeFile(
+			path.resolve(__dirname, "../fav.txt"),
+			formatted + "\n",
+			err => {
+				if (err) throw err
+			}
+		)
 	})
 }
 
 function popularOrCurstomSearch() {
-	let fav = fs.readFileSync(path.resolve('fav.txt'), "utf8", (err, data) => {
-		if (err) return undefined
-		return data
-	})
+	let fav = fs.readFileSync(
+		path.resolve(__dirname, "../fav.txt"),
+		"utf8",
+		(err, data) => {
+			if (err) return undefined
+			return data
+		}
+	)
+
 	let choices = fav.trim().split("\n")
 	if (choices[choices.length - 1] === "") {
 		choices.pop()
@@ -137,7 +161,7 @@ function fetchCoins(coin) {
 				console.log(`No data about ${coin}`)
 			} else {
 				console.log(
-                `${chalk.magentaBright.inverse("Results:")}    
+					`${chalk.magentaBright.inverse("Results:")}    
                 
                 ${chalk.blue.inverse(
 					`Coin: ${filtered[0].name} (${filtered[0].asset_id})`
