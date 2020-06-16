@@ -1,6 +1,6 @@
 {
   "name": "@jmmzz/cryptodata",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "description": "A crypto data fetcher in the command-line",
   "main": "./bin/index.js",
   "scripts": {
