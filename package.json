@@ -24,7 +24,7 @@
     "dotenv": "^8.2.0",
     "inquirer": "^7.0.4",
     "node-fetch": "^2.6.0",
-    "supports-color": "^7.1.0"
+    "supports-color": "^7.2.0"
   },
   "bin": {
     "crypto-data": "bin/index.js"
