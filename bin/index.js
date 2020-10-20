@@ -14,12 +14,11 @@ program
 	.option("-c, --coin <coin>", "Fetch data for a specific coin")
 	.option("-f, --add-fav <coin>", "Add a coin to favorites")
 	.option("-r, --rm-fav <coin>", "Remove a coin from favorites")
-	.version("1.0.0")
+	.version("1.0.7")
 
 program.parse(process.argv)
 
 if (program.coin) {
-	printTitle()
 	fetchAndDisplay(program.coin)
 } else if (program.addFav) {
 	addToFav(program.addFav)

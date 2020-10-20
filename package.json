@@ -1,20 +1,14 @@
 {
   "name": "@jmmzz/cryptodata",
-  "version": "1.0.7",
-  "description": "A crypto data fetcher in the command-line",
+  "version": "1.1.1",
+  "description": "An experimental crypto data fetcher in the command-line",
   "main": "./bin/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "cypto",
-    "cryptocurrency",
-    "coins",
-    "Bitcoin",
-    "CLI"
-  ],
+  "keywords": ["cypto", "cryptocurrency", "coins", "Bitcoin", "CLI"],
   "author": "@jmmzz",
-  "license": "ISC",
+  "license": "MIT",
   "homepage": "https://github.com/jmmzzei/crypto-data",
   "preferGlobal": true,
   "dependencies": {
@@ -23,9 +17,10 @@
     "commander": "^4.1.1",
     "dotenv": "^8.2.0",
     "inquirer": "^7.0.4",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.0",
+    "supports-color": "^7.1.0"
   },
   "bin": {
-    "crypto-data": "./bin/index.js"
+    "crypto-data": "bin/index.js"
   }
 }
