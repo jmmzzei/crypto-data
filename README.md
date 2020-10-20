@@ -1,6 +1,6 @@
 # crypto-data
 
-Command line app for getting cryptocurrencies related data retrieved from CoinAPI.
+An experimental command line app for getting cryptocurrencies related data retrieved from CoinAPI.
 
 ## Installation
 
