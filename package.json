@@ -12,7 +12,7 @@
   "homepage": "https://github.com/jmmzzei/crypto-data",
   "preferGlobal": true,
   "dependencies": {
-    "cfonts": "^2.8.6",
+    "cfonts": "^2.9.0",
     "chalk": "^3.0.0",
     "commander": "^4.1.1",
     "dotenv": "^8.2.0",
