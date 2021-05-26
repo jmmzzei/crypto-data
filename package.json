@@ -15,7 +15,7 @@
     "cfonts": "^2.8.6",
     "chalk": "^3.0.0",
     "commander": "^4.1.1",
-    "dotenv": "^8.2.0",
+    "dotenv": "^8.6.0",
     "inquirer": "^7.3.3",
     "node-fetch": "^2.6.0",
     "supports-color": "^7.2.0"
